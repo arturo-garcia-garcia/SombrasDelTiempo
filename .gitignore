@@ -1,0 +1,6 @@
+# Temporary files and build artifacts
+/build/
+/temp/
+*.log
+*.tmp
+.DS_Store # macOS files
