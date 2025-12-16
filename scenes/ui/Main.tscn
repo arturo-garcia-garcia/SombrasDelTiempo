@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb02o5jcwv5vp"]
+
+[ext_resource type="Script" uid="uid://br312ovgbp6mu" path="res://scripts/core/Main.gd" id="1_cc00j"]
+[ext_resource type="Script" uid="uid://cn3of1wx1w6io" path="res://scripts/core/HUD.gd" id="2_njtbt"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_cc00j")
+
+[node name="LevelContainer" type="Node2D" parent="."]
+
+[node name="CanvasHUD" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasHUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_njtbt")
+
+[node name="RelicCounterLabel" type="Label" parent="CanvasHUD/HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TimeIndicator" type="Label" parent="CanvasHUD/HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PauseButton" type="Button" parent="CanvasHUD/HUD"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="CanvasLayer_UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer_UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer_Debug" type="CanvasLayer" parent="."]
+
+[node name="AudioStreamPlayer_Music" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer_SFX" type="AudioStreamPlayer" parent="."]
