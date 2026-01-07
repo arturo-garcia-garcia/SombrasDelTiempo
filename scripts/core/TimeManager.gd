@@ -2,6 +2,7 @@
 class_name TimeManagerData
 extends Node
 
+var bg_music: AudioStreamPlayer
 enum TimeState { PRESENT, PAST }
 var state: int = TimeState.PRESENT
 signal time_changed(new_state)
@@ -22,7 +23,25 @@ var mode: TimeMode = TimeMode.NORMAL
 
 func _ready():
 	Engine.time_scale = 1.0
-
+	setup_background_music()
+	
+func setup_background_music():
+	# Crear el nodo reproductor de audio
+	bg_music = AudioStreamPlayer.new()
+	add_child(bg_music)
+	
+	# Cargar el archivo de música
+	var music_path = "res://assets/music/DarkTimes.mp3"
+	
+	if FileAccess.file_exists(music_path):
+		bg_music.stream = load(music_path)
+		bg_music.volume_db = -10.0 # Volumen moderado
+		bg_music.autoplay = true
+		bg_music.play()
+		print("Music loaded properly")
+	else:
+		print("Error: Music file was not found in : ", music_path)
+		
 func _process(delta):
 	_check_input()
 

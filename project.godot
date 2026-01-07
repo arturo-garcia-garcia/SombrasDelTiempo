@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SombrasDelTiempo"
-run/main_scene="uid://cb02o5jcwv5vp"
+run/main_scene="uid://rh4sdvofjh11"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 TimeManager="*res://scripts/core/TimeManager.gd"
 GameState="*res://scripts/core/GameState.gd"
+
+[editor]
+
+movie_writer/movie_file="/Users/user/Documents/Videos/sombrasdeltiempoMusica1.avi"
 
 [input]
 

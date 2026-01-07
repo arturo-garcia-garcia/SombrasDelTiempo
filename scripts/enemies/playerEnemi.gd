@@ -10,6 +10,26 @@ var jumps_left: int = 0
 const Total_jumps: int = 2
 @onready var boomerang_path = preload("res://scenes/player/boomerang.tscn")
 
+var bg_music_player: AudioStreamPlayer
+
+func _ready():
+	setup_background_music()
+
+func setup_background_music():
+	# Create reproductor node
+	bg_music_player = AudioStreamPlayer.new()
+	add_child(bg_music_player)
+	
+	var stream = load("res://assets/music/DarkTimes.mp3")
+	if stream:
+		bg_music_player.stream = stream
+		bg_music_player.bus = "Master" 
+		bg_music_player.volume_db = 0.0 
+		bg_music_player.play()
+		print("Music loaded properlu")
+	else:
+		print("ERROR: Music file is no the path")
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
