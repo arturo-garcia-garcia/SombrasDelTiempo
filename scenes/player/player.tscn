@@ -374,8 +374,8 @@ animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -29)
+position = Vector2(-6, -30)
 shape = SubResource("CapsuleShape2D_je7p5")
 
 [node name="Boom" type="Node2D" parent="."]
-position = Vector2(13, -27)
+position = Vector2(18, -34)

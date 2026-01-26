@@ -7,14 +7,16 @@ const JUMP_VELOCITY = 380.0
 var is_attacking = false
 var is_down = false
 var jumps_left: int = 0
+var p_direction: int = 1
 const Total_jumps: int = 2
 @onready var boomerang_path = preload("res://scenes/player/boomerang.tscn")
+@onready var shot_path = preload("res://scenes/player/sword_shot.tscn")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		if velocity.y > 0:
+		if velocity.y > 0 and not is_attacking:
 			$AnimatedSprite2D.play("fall")
 	else:
 		jumps_left = Total_jumps
@@ -34,8 +36,10 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("idle")
 	
 	if direction == 1:
+		p_direction = 1
 		$AnimatedSprite2D.flip_h = false
 	elif direction == -1:
+		p_direction = -1
 		$AnimatedSprite2D.flip_h = true
 
 	# Handle jump.
@@ -49,6 +53,7 @@ func _physics_process(delta: float) -> void:
 		is_attacking = true
 		$AnimatedSprite2D.play("special")
 		await $AnimatedSprite2D.animation_finished
+		shot()
 		#throw()
 		is_attacking = false
 
@@ -67,6 +72,18 @@ func _physics_process(delta: float) -> void:
 		is_down = false
 		
 	move_and_slide()
+
+func shot():
+	var sword_shot=shot_path.instantiate()
+	var direction = Vector2.RIGHT
+	if p_direction == -1:
+		direction = Vector2.LEFT
+	print(direction)
+	sword_shot.dir=direction
+	sword_shot.pos=$Boom.global_position
+	sword_shot.rota=global_rotation
+	sword_shot.action = true
+	get_parent().add_child.call_deferred(sword_shot)
 
 func throw():
 	var boomerang=boomerang_path.instantiate()

@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhqvng7x600qd"]
+
+[ext_resource type="Texture2D" uid="uid://cwr74gmnbpcwk" path="res://assets/sprites/Character/Ver2/Shot.png" id="1_l1cxo"]
+[ext_resource type="Script" uid="uid://cgxt0buk4dhdm" path="res://scripts/player/sword_shot.gd" id="1_l06sa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cko7a"]
+atlas = ExtResource("1_l1cxo")
+region = Rect2(262, 0, 131, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3btw"]
+atlas = ExtResource("1_l1cxo")
+region = Rect2(393, 0, 131, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l06sa"]
+atlas = ExtResource("1_l1cxo")
+region = Rect2(0, 0, 131, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owl4c"]
+atlas = ExtResource("1_l1cxo")
+region = Rect2(0, 0, 131, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkisr"]
+atlas = ExtResource("1_l1cxo")
+region = Rect2(131, 0, 131, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkya5"]
+atlas = ExtResource("1_l1cxo")
+region = Rect2(262, 0, 131, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3btw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cko7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3btw")
+}],
+"loop": true,
+"name": &"banish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l06sa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owl4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkisr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkya5")
+}],
+"loop": true,
+"name": &"shot",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gcvv0"]
+radius = 16.0
+height = 76.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l06sa"]
+radius = 16.0
+height = 64.0
+
+[node name="SwordShot" type="CharacterBody2D"]
+script = ExtResource("1_l06sa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x3btw")
+animation = &"banish"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 13)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_gcvv0")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-10, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_l06sa")
+
+[node name="Life" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Life" to="." method="_on_life_timeout"]

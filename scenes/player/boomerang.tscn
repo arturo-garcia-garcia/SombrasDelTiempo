@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://bckluy8fmbntj"]
 
-[ext_resource type="Texture2D" uid="uid://jfcukvmpv62p" path="res://assets/sprites/Character/Attack2.png" id="1_mile1"]
+[ext_resource type="Texture2D" uid="uid://jfcukvmpv62p" path="res://assets/sprites/Character/Ver1/Attack2.png" id="1_mile1"]
 [ext_resource type="Script" uid="uid://dgfgqawwphe3j" path="res://scripts/player/boomerang.gd" id="1_ofu0c"]
-[ext_resource type="Texture2D" uid="uid://dmrv472mn8one" path="res://assets/sprites/Character/Attack3.png" id="2_ofu0c"]
+[ext_resource type="Texture2D" uid="uid://dmrv472mn8one" path="res://assets/sprites/Character/Ver1/Attack3.png" id="2_ofu0c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1q8j"]
 atlas = ExtResource("1_mile1")
@@ -94,8 +94,10 @@ script = ExtResource("1_ofu0c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4.5, -5.5)
 sprite_frames = SubResource("SpriteFrames_3lvtq")
-animation = &"idle"
+animation = &"throw"
 autoplay = "idle"
+frame = 1
+frame_progress = 0.38049972
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
