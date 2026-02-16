@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://rh4sdvofjh11"]
+[gd_scene load_steps=8 format=4 uid="uid://rh4sdvofjh11"]
 
 [ext_resource type="Texture2D" uid="uid://sa8hqf74lr81" path="res://assets/tilesets/SwampTiles/Tileset.png" id="1_bw3rj"]
+[ext_resource type="Texture2D" uid="uid://beieiixdi2uv3" path="res://assets/images/backgrounds/Nivel0/L0_Parallax_Sky.png" id="1_osc7o"]
 [ext_resource type="PackedScene" uid="uid://bmy5i71g60amn" path="res://scenes/player/player.tscn" id="1_sxr8l"]
+[ext_resource type="Texture2D" uid="uid://bmiliidnt8yct" path="res://assets/images/backgrounds/Nivel0/L0_Parallax_Midground.png" id="2_xy1qu"]
+[ext_resource type="Texture2D" uid="uid://d1hym4e4ha7oo" path="res://assets/images/backgrounds/Nivel0/L0_Parallax_Foreground.png" id="3_jjvta"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_osc7o"]
 texture = ExtResource("1_bw3rj")
@@ -365,13 +368,56 @@ sources/0 = SubResource("TileSetAtlasSource_osc7o")
 
 [node name="Level0" type="Node2D"]
 
+[node name="CieloL0" type="Parallax2D" parent="."]
+z_index = -4096
+texture_filter = 1
+scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(1280, 0)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+
+[node name="Sprite2DCieloL0" type="Sprite2D" parent="CieloL0"]
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_osc7o")
+centered = false
+
+[node name="HorizonnteL0" type="Parallax2D" parent="."]
+z_index = -4096
+texture_filter = 1
+scroll_scale = Vector2(0.5, 0.1)
+repeat_size = Vector2(1280, 0)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+
+[node name="Sprite2DHorL0" type="Sprite2D" parent="HorizonnteL0"]
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_xy1qu")
+centered = false
+
+[node name="ForegroundL0" type="Parallax2D" parent="."]
+z_index = -4096
+texture_filter = 1
+scroll_scale = Vector2(0.8, 0.2)
+repeat_size = Vector2(1280, 0)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+
+[node name="Sprite2DForL0" type="Sprite2D" parent="ForegroundL0"]
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_jjvta")
+centered = false
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(144, 226)
 tile_map_data = PackedByteArray("AAD9/wAAAAABAAAAAAD+/wAAAAABAAAAAAD//wAAAAABAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAADAAAAAAAFAAAAAAADAAAAAAD8/wAAAAAAAAAAAAAGAAAAAAAEAAAAAAAHAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAJAAAAAAAFAAAAAAD9/wEAAAABAAEAAAD+/wEAAAABAAEAAAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAEAAAACAAEAAAACAAEAAAADAAEAAAACAAEAAAAEAAEAAAADAAEAAAAFAAEAAAADAAEAAAAGAAEAAAAEAAEAAAAHAAEAAAAEAAEAAAAIAAEAAAAEAAEAAAAJAAEAAAAFAAEAAAD8/wEAAAAAAAEAAAAJAAIAAAAFAAIAAAAJAAMAAAAFAAMAAAAJAAQAAAAHAAQAAAAKAAQAAAAIAAQAAAALAAQAAAAIAAQAAAAMAAQAAAAJAAQAAAANAAQAAAAJAAQAAAAOAAQAAAADAAYAAAAPAAQAAAADAAYAAAAQAAQAAAAEAAYAAAARAAQAAAAEAAYAAAASAAQAAAAFAAYAAAATAAQAAAAFAAYAAAAUAAQAAAAGAAYAAAAVAAQAAAAGAAYAAAAWAAQAAAAKAAQAAAAWAAMAAAAKAAMAAAAWAAIAAAAKAAMAAAAWAAEAAAAKAAIAAAAWAAAAAAAKAAIAAAAWAP//AAAAAAQAAAAWAP7/AAAAAAQAAAAWAP3/AAAAAAMAAAAWAPz/AAAAAAMAAAAWAPv/AAAAAAIAAAAWAPr/AAAAAAIAAAAWAPn/AAAAAAEAAAAWAPj/AAAAAAEAAAAWAPf/AAAAAAAAAAAXAPf/AAABAAAAAAAYAPf/AAABAAAAAAAZAPf/AAACAAAAAAAaAPf/AAACAAAAAAAbAPf/AAADAAAAAAAcAPf/AAADAAAAAAAdAPf/AAADAAAAAAAeAPf/AAAEAAAAAAAfAPf/AAAEAAAAAAAgAPf/AAAEAAAAAAAhAPf/AAAFAAAAAAAJAAUAAAAHAAUAAAAKAAUAAAAIAAUAAAALAAUAAAAIAAUAAAAMAAUAAAAJAAUAAAANAAUAAAAJAAUAAAAOAAUAAAAJAAUAAAAPAAUAAAAJAAUAAAAQAAUAAAAKAAUAAAARAAUAAAAKAAUAAAASAAUAAAALAAUAAAATAAUAAAALAAUAAAAUAAUAAAALAAUAAAAVAAUAAAAKAAUAAAAWAAUAAAAJAAUAAAAIAAIAAAAEAAIAAAAIAAMAAAAEAAMAAAAIAAQAAAAEAAQAAAAIAAUAAAALAAUAAAAXAAUAAAAIAAUAAAAXAAQAAAAGAAUAAAAXAAMAAAAGAAQAAAAXAAIAAAAGAAMAAAAXAAEAAAAGAAIAAAAXAAAAAAAGAAEAAAAXAP//AAAGAAAAAAAXAP7/AAAHAAAAAAAXAP3/AAAIAAAAAAAXAPz/AAAJAAAAAAAXAPv/AAAKAAAAAAAXAPr/AAALAAAAAAAXAPn/AAALAAEAAAAXAPj/AAALAAIAAAAYAPj/AAALAAMAAAAZAPj/AAABAAEAAAAaAPj/AAACAAEAAAAbAPj/AAADAAEAAAAcAPj/AAAEAAEAAAAdAPj/AAAEAAEAAAAeAPj/AAACAAIAAAAfAPj/AAADAAIAAAAgAPj/AAACAAIAAAAhAPj/AAAFAAEAAAASAP3/AAACAAYAAAASAP7/AAACAAcAAAATAP3/AAADAAYAAAATAP7/AAADAAcAAAAUAP3/AAAEAAYAAAAUAP7/AAAEAAcAAAAVAP3/AAAFAAYAAAAVAP7/AAAFAAcAAAA=")
 tile_set = SubResource("TileSet_wjk5u")
 
 [node name="Player" parent="." instance=ExtResource("1_sxr8l")]
-position = Vector2(144, 230)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-1, -33)

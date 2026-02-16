@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 TimeManager="*res://scripts/core/TimeManager.gd"
 GameState="*res://scripts/core/GameState.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=810
+
 [input]
 
 time_toggle={
