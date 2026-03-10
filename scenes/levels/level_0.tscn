@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://rh4sdvofjh11"]
+[gd_scene load_steps=9 format=4 uid="uid://rh4sdvofjh11"]
 
 [ext_resource type="Texture2D" uid="uid://sa8hqf74lr81" path="res://assets/tilesets/SwampTiles/Tileset.png" id="1_bw3rj"]
 [ext_resource type="Texture2D" uid="uid://beieiixdi2uv3" path="res://assets/images/backgrounds/Nivel0/L0_Parallax_Sky.png" id="1_osc7o"]
 [ext_resource type="PackedScene" uid="uid://bmy5i71g60amn" path="res://scenes/player/player.tscn" id="1_sxr8l"]
 [ext_resource type="Texture2D" uid="uid://bmiliidnt8yct" path="res://assets/images/backgrounds/Nivel0/L0_Parallax_Midground.png" id="2_xy1qu"]
 [ext_resource type="Texture2D" uid="uid://d1hym4e4ha7oo" path="res://assets/images/backgrounds/Nivel0/L0_Parallax_Foreground.png" id="3_jjvta"]
+[ext_resource type="PackedScene" uid="uid://r7rasl8byup2" path="res://scenes/enemies/MinorShadow.tscn" id="4_minor_shadow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_osc7o"]
 texture = ExtResource("1_bw3rj")
@@ -423,3 +424,6 @@ tile_set = SubResource("TileSet_wjk5u")
 position = Vector2(-1, -33)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
+
+[node name="MinorShadow" parent="." instance=ExtResource("4_minor_shadow")]
+position = Vector2(105, 5)
