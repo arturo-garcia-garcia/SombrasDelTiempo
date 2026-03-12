@@ -12,6 +12,45 @@ const Total_jumps: int = 2
 @onready var boomerang_path = preload("res://scenes/player/boomerang.tscn")
 @onready var shot_path = preload("res://scenes/player/sword_shot.tscn")
 
+# Player health system
+@export var max_health: int = 5
+var current_health: int
+
+func _ready():
+	current_health = max_health
+	
+	# Set up collision layers for player
+	# Layer 1: World/Tiles (collision)
+	# Layer 2: Enemies (collision)
+	# Layer 3: Player (player belongs to)
+	set_collision_layer_value(1, false)  # Not world layer
+	set_collision_layer_value(2, false)  # Not enemy layer
+	set_collision_layer_value(3, true)   # Player layer
+	
+	# Masks: What layers to collide with
+	set_collision_mask_value(1, true)   # Collide with world/tiles
+	set_collision_mask_value(2, true)   # Collide with enemies
+	set_collision_mask_value(3, false)  # Don't collide with other players
+
+func take_damage(amount: int) -> void:
+	if is_attacking:  # Can't be damaged while attacking
+		return
+	
+	current_health -= amount
+	print("Player took damage: ", amount, " | Health: ", current_health, "/", max_health)
+	
+	# Visual feedback
+	if current_health > 0:
+		$AnimatedSprite2D.modulate = Color.RED
+		await get_tree().create_timer(0.1).timeout
+		$AnimatedSprite2D.modulate = Color.WHITE
+	else:
+		# Player death - restart game
+		print("Player died! Restarting game...")
+		$AnimatedSprite2D.modulate = Color.RED
+		await get_tree().create_timer(1.0).timeout
+		get_tree().reload_current_scene()
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

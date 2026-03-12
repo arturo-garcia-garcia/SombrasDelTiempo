@@ -1,6 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://r7rasl8byup2"]
+[gd_scene load_steps=35 format=3 uid="uid://r7rasl8byup2"]
 
-[ext_resource type="Script" uid="uid://c41epwhbwr04p" path="res://scripts/player/player.gd" id="1_36oub"]
+[ext_resource type="Script" uid="uid://b2y4xb7s3yyud" path="res://scripts/enemies/minor_shadow.gd" id="1_minor_shadow_script"]
 [ext_resource type="Texture2D" uid="uid://c8nnqvxnkpxo" path="res://assets/sprites/enemies/MinorShadow.png" id="7_qphcb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrl10"]
@@ -248,9 +248,12 @@ animations = [{
 radius = 8.0
 height = 46.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_detection"]
+radius = 36.0
+
+[node name="MinorShadow" type="CharacterBody2D"]
 z_index = 5
-script = ExtResource("1_36oub")
+script = ExtResource("1_minor_shadow_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -31)
@@ -264,3 +267,19 @@ shape = SubResource("CapsuleShape2D_je7p5")
 
 [node name="Boom" type="Node2D" parent="."]
 position = Vector2(18, -34)
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-16, -45)
+shape = SubResource("CircleShape2D_detection")
+
+[node name="LedgeDetector" type="RayCast2D" parent="."]
+position = Vector2(0, -20)
+target_position = Vector2(32, 32)
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-6, -30)
+shape = SubResource("CapsuleShape2D_je7p5")
