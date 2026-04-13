@@ -1,6 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://dslpp7gesfwo0"]
+[gd_scene load_steps=37 format=3 uid="uid://dslpp7gesfwo0"]
 
-[ext_resource type="Script" uid="uid://c41epwhbwr04p" path="res://scripts/player/player.gd" id="1_570oh"]
+[ext_resource type="Script" path="res://scripts/enemies/knight.gd" id="1_570oh"]
 [ext_resource type="Texture2D" uid="uid://r7jiv41u5bur" path="res://assets/sprites/enemies/knight.png" id="3_0v14h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpj6w"]
@@ -265,14 +265,17 @@ animations = [{
 radius = 8.0
 height = 46.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_knight_det"]
+radius = 36.0
+
+[node name="Knight" type="CharacterBody2D"]
 z_index = 5
 script = ExtResource("1_570oh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -31)
 sprite_frames = SubResource("SpriteFrames_h17s1")
-animation = &"run"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -281,3 +284,19 @@ shape = SubResource("CapsuleShape2D_je7p5")
 
 [node name="Boom" type="Node2D" parent="."]
 position = Vector2(18, -34)
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-16, -45)
+shape = SubResource("CircleShape2D_knight_det")
+
+[node name="LedgeDetector" type="RayCast2D" parent="."]
+position = Vector2(0, -20)
+target_position = Vector2(32, 32)
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-6, -30)
+shape = SubResource("CapsuleShape2D_je7p5")
